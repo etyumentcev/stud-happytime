@@ -9,7 +9,7 @@
 #include <string> 
 using namespace std;
 class Fuzzy
-{
+{ private:
 	string name;
 	int colour;
 	Coordinates XY; // класс-наследник, с координатами пушистика, хранит в себе местоположения платформ, монстров и пиццы.
