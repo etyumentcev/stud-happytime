@@ -1,0 +1,84 @@
+#include <conio.h> 
+#include <iostream> 
+#include <windows.h> 
+using namespace std; 
+
+
+class Fuzzy 
+{ 
+char fuzzy = '*'; 
+COORD coord; 
+
+public: 
+void DrawFuzzy() 
+{ 
+Fuzzy a; 
+COORD coord; 
+coord.X = 0; 
+coord.Y = 24; 
+SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord); 
+cout « fuzzy; 
+} 
+void Go() 
+{ 
+HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE); 
+COORD coord = { 0, 0 }; 
+coord.X = 0; 
+coord.Y = 24; 
+SetConsoleCursorPosition(h, coord); 
+
+
+
+while (1) 
+{ 
+
+int step = 1; 
+int code = _getch(); 
+if (code == 224) 
+{ 
+code = _getch(); 
+
+switch (code) 
+{ 
+case 72: //72,75,77,80 - код для клавиш стрелок на клавиатуре 
+system("cls"); 
+coord.Y = coord.Y - step; 
+SetConsoleCursorPosition(h, coord); 
+
+cout « fuzzy; 
+break; 
+case 75: 
+system("cls"); 
+coord.X = coord.X - step; 
+SetConsoleCursorPosition(h, coord); 
+cout « fuzzy; 
+break; 
+case 77: 
+system("cls"); 
+coord.X = coord.X + step; 
+SetConsoleCursorPosition(h, coord); 
+cout « fuzzy; 
+break; 
+case 80: 
+system("cls"); 
+coord.Y = coord.Y + step; 
+SetConsoleCursorPosition(h, coord); 
+cout « fuzzy; 
+break; 
+} 
+
+} 
+} 
+} 
+}; 
+
+
+int main() 
+{ 
+Fuzzy batterfly; 
+
+batterfly.DrawFuzzy(); 
+batterfly.Go(); 
+_getch(); 
+return 0; 
+}
